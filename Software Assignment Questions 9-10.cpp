@@ -20,15 +20,17 @@
 #include <iostream>
 using namespace std;
 
-void takeDamage(health)
+void takeDamage(double &health);
+void heal(double &health, string items[]);
+void lifePowerUp(int &lives, string items[]);
 
 int main() {
 
 string name;
 double health;
-int score;
+int score = 0;
 int lives;
-string items[];
+string items[] = {"arrows", "sword", "potion", "power up"};
 
 cout << "What is your player's name: ";
 cin >> name;
@@ -41,13 +43,68 @@ string option;
 
 for (int i = 0; i < 5; i++) {
 
-cout << "Choose from one of the following options by entering the option name: take damage, heal, life power up.";
-cin >> option;
+  cout << "Choose from one of the following options by entering the option name: take damage, heal, life power up.";
+  cin >> option;
 
-if (option == "take damage") 
+  if (option == "take damage") {
+
+    takeDamage(health);
+    cout << "You have taken 30 damage! You now have " << health << " health points remaining." << endl;
+    score -= 10;
+    if (health <= 0) {
+        cout << name << " has run out of health and the game is over!" << endl;
+        break;
+      }
+    
+    }
+
+  else if (option == "heal") {
+    
+    heal(health, items);
+    cout << "You have received 30 health. You now have " << health << " health points." << endl;
+    score += 20;
+    
+    } 
+
+  else if (option == "life power up") {
+
+    lifePowerUp(lives, items);
+    cout << "You have received 1 life. You now have " << lives << " lives." << endl;
+    score += 40;
+    
+    }
   
-}
+  }
 
+  if (health <= 0) {
+    cout << "Unfortunately, " << name << " did not survive. Your final score was: " << score << endl;
+  } 
+  else {
+    cout << "You have completed your journey, " << name << "! Your remaining health is " << health 
+         << ", your final score is " << score << ", and you have " << lives << " lives left." << endl;
+  } 
 
 return 0;
 }
+
+void takeDamage(double &health) {
+health -= 30;  
+}
+
+void heal(double &health, string items[]) {
+for (int j = 0; items[j]; j++)
+  if (items[j] == "potion") {
+    health += 30;
+    items[j] = "";
+  }
+}
+
+void lifePowerUp(int &lives, string items[]) {
+for (int k = 0; items[k]; k++)
+  if (items[k] == "power up") {
+    life += 1;
+    items[k] = "";
+  }
+}
+
+
