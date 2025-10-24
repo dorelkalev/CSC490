@@ -21,8 +21,8 @@
 using namespace std;
 
 void takeDamage(double &health);
-void heal(double &health, string items[]);
-void lifePowerUp(int &lives, string items[]);
+void heal(double &health, int &score, string items[]);
+void lifePowerUp(int &lives, int &score, string items[]);
 
 int main() {
 
@@ -58,13 +58,11 @@ int main() {
         }
 
         else if (option == 2) {
-            heal(health, items);
-            score += 20;    
+            heal(health, score, items);    
         }
 
         else if (option == 3) {
-            lifePowerUp(lives, items);
-            score += 40;   
+            lifePowerUp(lives, score, items);
         }
 
         else { 
@@ -89,23 +87,25 @@ void takeDamage(double &health) {
     health -= 30;
 }
 
-void heal(double &health, string items[]) {
+void heal(double &health, int &score, string items[]) {
     for (int j = 0; j < 4; j++)
         if (items[j] == "potion") {
             health += 30;
             items[j] = "";
             cout << "You have received 30 health. You now have " << health << " health points." << endl << endl;
+            score += 20;
             return;
         }
     cout << "You don't have a potion to heal yourself!" << endl << endl;
 }
 
-void lifePowerUp(int &lives, string items[]) {
+void lifePowerUp(int &lives, int &score, string items[]) {
     for (int k = 0; k < 4; k++)
         if (items[k] == "power up") {
             lives += 1;
             items[k] = "";
             cout << "You have received 1 life. You now have " << lives << " lives." << endl << endl;
+            score += 40;   
             return;
         }
     cout << "You don't have a power-up item!" << endl;
@@ -163,10 +163,9 @@ int main() {
 
     int option;
 
-    // 5 actions loop
     for (int i = 0; i < 5; i++) {
       
-        cout << "\nChoose an action by entering the corresponding number:\n";
+        cout << "\nChoose an action by entering the corresponding number: " << endl << endl;
         cout << "1. Complete assignment\n";
         cout << "2. Skip class\n";
         cout << "3. Study session\n";
