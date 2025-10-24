@@ -43,7 +43,7 @@ int main() {
 
     for (int i = 0; i < 5; i++) {
 
-        cout << "\nChoose from one of the following options by entering the corresponding option number: "
+        cout << "\nChoose from one of the following options by entering the corresponding option number: \n"
              << "1. take damage\n 2. heal\n 3. life power up" << endl;
         cin >> option;
 
