@@ -42,13 +42,11 @@ int main() {
     int option;
 
     for (int i = 0; i < 5; i++) {
-
         cout << "\nChoose from one of the following options by entering the corresponding option number: \n"
              << "1. take damage\n 2. heal\n 3. life power up" << endl;
         cin >> option;
 
         if (option == 1) {
-
             takeDamage(health);
             cout << "You have taken 30 damage! You now have " << health << " health points remaining." << endl << endl;
             score -= 10;
@@ -60,20 +58,16 @@ int main() {
         }
 
         else if (option == 2) {
-
             heal(health, items);
-            cout << "You have received 30 health. You now have " << health << " health points." << endl << endl;
-            score += 20;
+            score += 20;    
         }
 
         else if (option == 3) {
-
             lifePowerUp(lives, items);
-            cout << "You have received 1 life. You now have " << lives << " lives." << endl << endl;
-            score += 40;
+            score += 40;   
         }
 
-        else {
+        else { 
             cout << "Invalid choice. Please select 1, 2, or 3." << endl;
         }
 
@@ -100,8 +94,10 @@ void heal(double &health, string items[]) {
         if (items[j] == "potion") {
             health += 30;
             items[j] = "";
+            cout << "You have received 30 health. You now have " << health << " health points." << endl << endl;
             return;
         }
+    cout << "You don't have a potion to heal yourself!" << endl << endl;
 }
 
 void lifePowerUp(int &lives, string items[]) {
@@ -109,8 +105,10 @@ void lifePowerUp(int &lives, string items[]) {
         if (items[k] == "power up") {
             lives += 1;
             items[k] = "";
+            cout << "You have received 1 life. You now have " << lives << " lives." << endl << endl;
             return;
         }
+    cout << "You don't have a power-up item!" << endl;
 }
 
 
