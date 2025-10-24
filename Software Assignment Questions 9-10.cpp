@@ -174,32 +174,24 @@ int main() {
         cin >> option;
 
         if (option == 1) {
-          
             completeAssignment(gpa);
             totalCredits += 1;
-          
         }
+            
         else if (option == 2) {
-          
             skipClass(absences);
-          
         }
           
         else if (option == 3) {
-          
             studySession(gpa, supplies);
-          
         }
           
         else if (option == 4) {
-          
             takeMathExam(gpa, supplies);
-          
         }
+            
         else {
-          
             cout << "Invalid choice. Please select 1–4." << endl;
-          
         }
 
         cout << "You have " << 4 - i << " actions remaining." << endl;
