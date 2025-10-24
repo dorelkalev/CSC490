@@ -29,7 +29,7 @@ int main() {
 string name;
 double health;
 int score = 0;
-int lives;
+int lives = 3;
 string items[] = {"arrows", "sword", "potion", "power up"};
 
 cout << "What is your player's name: ";
@@ -39,14 +39,14 @@ cin >> health;
 
 cout << "Greetings, " << name << "! You have " << health << " health points." << endl << endl;
 
-string option;
+int option;
 
 for (int i = 0; i < 5; i++) {
 
-  cout << "Choose from one of the following options by entering the option name: take damage, heal, life power up.";
+  cout << "\nChoose from one of the following options by entering the corresponding option number: take damage (1), heal (2), life power up (3).";
   cin >> option;
 
-  if (option == "take damage") {
+  if (option == 1) {
 
     takeDamage(health);
     cout << "You have taken 30 damage! You now have " << health << " health points remaining." << endl;
@@ -58,7 +58,7 @@ for (int i = 0; i < 5; i++) {
     
     }
 
-  else if (option == "heal") {
+  else if (option == 2) {
     
     heal(health, items);
     cout << "You have received 30 health. You now have " << health << " health points." << endl;
@@ -66,13 +66,21 @@ for (int i = 0; i < 5; i++) {
     
     } 
 
-  else if (option == "life power up") {
+  else if (option == 3) {
 
     lifePowerUp(lives, items);
     cout << "You have received 1 life. You now have " << lives << " lives." << endl;
     score += 40;
     
     }
+
+  else {
+    
+    cout << "Invalid choice. Please select 1, 2, or 3." << endl;
+    
+    }
+
+  cout << "You have " << 4 - i << " actions remaining." << endl;
   
   }
 
@@ -92,18 +100,20 @@ health -= 30;
 }
 
 void heal(double &health, string items[]) {
-for (int j = 0; items[j]; j++)
+for (int j = 0; j < 4; j++)
   if (items[j] == "potion") {
     health += 30;
     items[j] = "";
+    return;
   }
 }
 
 void lifePowerUp(int &lives, string items[]) {
-for (int k = 0; items[k]; k++)
+for (int k = 0; k < 4; k++)
   if (items[k] == "power up") {
-    life += 1;
+    lives += 1;
     items[k] = "";
+    return;
   }
 }
 
